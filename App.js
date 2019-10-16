@@ -1,7 +1,14 @@
 import Constants from "expo-constants";
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ScrollView,
+  Switch
+} from "react-native";
 
 const styles = StyleSheet.create({
   todoContainer: { flexDirection: "row", alignItems: "center" },
@@ -12,6 +19,7 @@ let id = 0;
 
 const Todo = props => (
   <View style={styles.todoContainer}>
+    <Switch value={props.todo.checked} onValueChange={props.onToggle}></Switch>
     <Button onPress={props.onDelete} title="delete" />
     <Text>{props.todo.text}</Text>
   </View>

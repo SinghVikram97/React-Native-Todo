@@ -1,10 +1,17 @@
+import Constants from "expo-constants";
+
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+
+const styles = StyleSheet.create({
+  todoContainer: { flexDirection: "row", alignItems: "center" },
+  appContainer: { paddingTop: Constants.statusBarHeight }
+});
 
 let id = 0;
 
 const Todo = props => (
-  <View style={{ flexDirection: "row", alignItems: "center" }}>
+  <View style={styles.todoContainer}>
     <Button onPress={props.onDelete} title="delete" />
     <Text>{props.todo.text}</Text>
   </View>
@@ -19,14 +26,15 @@ export default class App extends Component {
   }
 
   addTodo() {
-    id++;
     const text = `TODO number ${id}`;
     this.setState({
-      todos: [...this.state.todos, { id: id, text: text, checked: false }]
+      todos: [...this.state.todos, { id: id++, text: text, checked: false }]
     });
   }
 
-  removeTodo() {
+  removeTodo(id) {
+    console.log(this.state.todos);
+    console.log(id);
     this.setState({ todos: this.state.todos.filter(todo => todo.id !== id) });
   }
   toggleTodo(id) {
@@ -43,7 +51,7 @@ export default class App extends Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.appContainer}>
         <Text>Todo count:{this.state.todos.length}</Text>
         <Text>
           Unchecked todo count:

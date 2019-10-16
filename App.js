@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 let id = 0;
 
 const Todo = props => (
-  <View>
+  <View style={{ flexDirection: "row", alignItems: "center" }}>
     <Button onPress={props.onDelete} title="delete" />
     <Text>{props.todo.text}</Text>
   </View>
